@@ -6,10 +6,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useScroll } from 'motion/react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { 
-  Menu, X, ChevronRight, ChevronLeft, CheckCircle2, ArrowRight, 
-  ShieldCheck, TrendingUp, Users, FileText, AlertTriangle, 
-  Clock, Award, Briefcase, Phone, Mail, MapPin, ChevronDown, 
+import {
+  Menu, X, ChevronRight, ChevronLeft, CheckCircle2, ArrowRight,
+  ShieldCheck, TrendingUp, Users, FileText, AlertTriangle,
+  Clock, Award, Briefcase, Phone, Mail, MapPin, ChevronDown,
   BarChart3, Scale, Calculator, Search, ShieldAlert,
   FileSpreadsheet, Landmark, FolderOpen, CheckCircle
 } from 'lucide-react';
@@ -30,8 +30,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Despre noi', href: '/despre-noi' },
-    { 
-      name: 'Servicii', 
+    {
+      name: 'Servicii',
       href: '#',
       dropdown: [
         { name: 'Audit statutar', href: '/servicii/audit-statutar' },
@@ -45,19 +45,19 @@ const Navbar = () => {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${isScrolled ? 'shadow-sm py-3' : 'py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src="/logo-helenico-advisory.webp" alt="Helenico Advisory" className="h-10 w-auto" />
+            <img src="/logo-helenico-advisory.webp" alt="Helenico Advisory" className="h-16 -my-3 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <div 
-                key={link.name} 
+              <div
+                key={link.name}
                 className="relative group"
                 onMouseEnter={() => setActiveDropdown(link.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
@@ -76,9 +76,9 @@ const Navbar = () => {
                           className="absolute top-full left-0 w-64 bg-white shadow-lg rounded-lg border border-gray-100 py-2 overflow-hidden"
                         >
                           {link.dropdown.map(dropLink => (
-                            <Link 
-                              key={dropLink.name} 
-                              to={dropLink.href} 
+                            <Link
+                              key={dropLink.name}
+                              to={dropLink.href}
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-beige hover:text-brand-gold transition-colors"
                             >
                               {dropLink.name}
@@ -102,7 +102,7 @@ const Navbar = () => {
             <Link to="/contact" className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-transparent border border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white text-sm font-medium rounded transition-colors">
               Programează o discuție
             </Link>
-            <button 
+            <button
               className="md:hidden text-brand-navy p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
@@ -115,7 +115,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -129,9 +129,9 @@ const Navbar = () => {
                       <div className="text-base font-medium text-gray-800 mb-2">{link.name}</div>
                       <div className="pl-4 flex flex-col gap-2 border-l-2 border-brand-gold/20 ml-2">
                         {link.dropdown.map(dropLink => (
-                          <Link 
-                            key={dropLink.name} 
-                            to={dropLink.href} 
+                          <Link
+                            key={dropLink.name}
+                            to={dropLink.href}
                             className="text-sm text-gray-600 py-1"
                             onClick={() => setMobileMenuOpen(false)}
                           >
@@ -141,8 +141,8 @@ const Navbar = () => {
                       </div>
                     </div>
                   ) : (
-                    <Link 
-                      to={link.href} 
+                    <Link
+                      to={link.href}
                       className="block text-base font-medium text-gray-800 py-2"
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -151,8 +151,8 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="mt-4 inline-flex items-center justify-center px-6 py-3 bg-transparent border border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white text-base font-medium rounded"
               >
@@ -194,16 +194,17 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Hero background image */}
       <div className="absolute inset-0">
-        <img src="/hero-audit-statutar.webp" alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px]" />
+        <img src="/hero-mobil-audit-statutar.webp" alt="" className="w-full h-full object-cover md:hidden" />
+        <img src="/hero-audit-statutar.webp" alt="" className="w-full h-full object-cover hidden md:block" />
+        <div className="absolute inset-0 bg-brand-navy/20" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-[50px]">
         <div
-          className="max-w-3xl mx-auto text-center"
+          className="max-w-2xl text-left"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           style={{ perspective: 1000 }}
@@ -217,20 +218,20 @@ const Hero = () => {
             style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
           >
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-serif font-medium text-brand-navy leading-[1.1] mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-serif font-medium text-white leading-[1.1] mb-6"
               style={{ transform: "translateZ(40px)" }}
             >
               Audit statutar clar, riguros și adaptat companiei tale.
             </h1>
             <p
-              className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed"
+              className="text-base sm:text-lg text-brand-navy mb-8 leading-relaxed"
               style={{ transform: "translateZ(30px)" }}
             >
               Sprijinim companiile să își îndeplinească obligațiile legale, să reducă riscurile și să obțină situații financiare auditate cu încredere.
             </p>
 
             <div
-              className="flex flex-col sm:flex-row gap-4 mb-12 justify-center"
+              className="flex flex-col sm:flex-row gap-4 mb-12 justify-start"
               style={{ transform: "translateZ(50px)" }}
             >
               <a href="#calculator" className="inline-flex items-center justify-center px-8 py-4 bg-brand-navy hover:bg-brand-navy-light text-white font-medium rounded transition-colors shadow-lg hover:shadow-xl">
@@ -239,15 +240,15 @@ const Hero = () => {
             </div>
 
             <div
-              className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-medium text-gray-500"
+              className="flex flex-wrap items-center justify-start gap-x-8 gap-y-4 text-sm font-medium text-white/70"
               style={{ transform: "translateZ(20px)" }}
             >
               <div className="flex items-center gap-2">
-                <Award className="h-4 w-4 text-brand-gold" />
+                <Award className="h-4 w-4 text-brand-navy" />
                 <span>15+ ani expertiză audit & advisory</span>
               </div>
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-brand-gold" />
+                <Users className="h-4 w-4 text-brand-navy" />
                 <span>Certificări CAFR si ASPAAS</span>
               </div>
             </div>
@@ -301,7 +302,7 @@ const TrustStrip = () => {
             ))}
           </div>
         </div>
-        
+
         <div className="bg-white border-y border-gray-100 py-6 overflow-hidden flex">
           <div className="flex animate-marquee-reverse whitespace-nowrap">
             {duplicatedItems2.map((item, i) => (
@@ -320,7 +321,7 @@ const TrustStrip = () => {
             ))}
           </div>
         </div>
-        
+
         <div className="bg-brand-navy py-6 overflow-hidden flex">
           <div className="flex animate-marquee-bottom whitespace-nowrap">
             {duplicatedItems3.map((item, i) => (
@@ -368,15 +369,15 @@ const Criteria = () => {
       <div ref={containerRef} className="relative h-[400vh]">
         <div className="sticky top-[-15px] h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
           <div className="relative w-full max-w-lg mx-auto h-[320px] px-[5px] md:px-0" style={{ perspective: 2000 }}>
-            <motion.div 
+            <motion.div
               className="w-full h-full relative"
-              style={{ 
+              style={{
                 transformStyle: "preserve-3d",
                 rotateX: rotateX
               }}
             >
               {/* Face 0: Active (Front) */}
-              <div 
+              <div
                 className="absolute inset-0 bg-brand-navy p-8 md:p-10 rounded-2xl shadow-xl border border-brand-navy flex flex-col items-center justify-center text-center"
                 style={{ transform: "rotateX(0deg) translateZ(160px)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
               >
@@ -388,7 +389,7 @@ const Criteria = () => {
               </div>
 
               {/* Face 1: Cifra de afaceri (Bottom) */}
-              <div 
+              <div
                 className="absolute inset-0 bg-brand-navy p-8 md:p-10 rounded-2xl shadow-xl border border-brand-navy flex flex-col items-center justify-center text-center"
                 style={{ transform: "rotateX(90deg) translateZ(160px)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
               >
@@ -400,7 +401,7 @@ const Criteria = () => {
               </div>
 
               {/* Face 2: Salariați (Back) */}
-              <div 
+              <div
                 className="absolute inset-0 bg-brand-navy p-8 md:p-10 rounded-2xl shadow-xl border border-brand-navy flex flex-col items-center justify-center text-center"
                 style={{ transform: "rotateX(180deg) translateZ(160px)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
               >
@@ -412,7 +413,7 @@ const Criteria = () => {
               </div>
 
               {/* Face 3: Atenție la praguri (Top) */}
-              <div 
+              <div
                 className="absolute inset-0 bg-brand-navy text-white p-8 md:p-10 rounded-2xl shadow-xl border border-brand-navy flex flex-col items-center justify-center text-center"
                 style={{ transform: "rotateX(270deg) translateZ(160px)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
               >
@@ -470,8 +471,8 @@ const AuditCalculator = () => {
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Total Active (LEI)</label>
-                <input 
-                  type="number" 
+                <input
+                  type="number"
                   value={assets}
                   onChange={(e) => setAssets(e.target.value)}
                   placeholder="ex: 18000000"
@@ -480,8 +481,8 @@ const AuditCalculator = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Cifra de Afaceri (LEI)</label>
-                <input 
-                  type="number" 
+                <input
+                  type="number"
                   value={turnover}
                   onChange={(e) => setTurnover(e.target.value)}
                   placeholder="ex: 35000000"
@@ -490,8 +491,8 @@ const AuditCalculator = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Număr Mediu Salariați</label>
-                <input 
-                  type="number" 
+                <input
+                  type="number"
                   value={employees}
                   onChange={(e) => setEmployees(e.target.value)}
                   placeholder="ex: 55"
@@ -500,7 +501,7 @@ const AuditCalculator = () => {
               </div>
             </div>
 
-            <button 
+            <button
               onClick={calculate}
               className="w-full md:w-auto px-8 py-3 bg-brand-navy hover:bg-brand-navy-light text-white font-medium rounded-lg transition-colors"
             >
@@ -510,7 +511,7 @@ const AuditCalculator = () => {
 
           <AnimatePresence>
             {result !== 'none' && (
-              <motion.div 
+              <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -577,7 +578,7 @@ const Risks = () => {
               <ArrowRight size={18} />
             </Link>
           </div>
-          
+
           <div className="bg-brand-beige-dark/50 p-8 md:p-10 rounded-2xl">
             <ul className="space-y-6">
               {risks.map((risk, i) => (
@@ -633,7 +634,7 @@ const About = () => {
                 <div className="bg-brand-beige px-6 py-3 rounded-lg border border-brand-gold/20 font-medium tracking-wider text-brand-navy">CAFR</div>
               </div>
             </div>
-            
+
             <div className="space-y-8">
               {[
                 { title: "Expertiză recunoscută", desc: "În audit financiar și consultanță pentru management." },
@@ -718,15 +719,15 @@ const Services = () => {
             <p className="text-gray-600 text-lg">Soluții personalizate pentru performanță sustenabilă și decizii sigure.</p>
           </div>
           <div className="flex gap-3 shrink-0">
-            <button 
-              onClick={() => scroll('left')} 
+            <button
+              onClick={() => scroll('left')}
               className="w-12 h-12 rounded-full border border-brand-navy/20 flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-white transition-colors focus:outline-none"
               aria-label="Previous services"
             >
               <ChevronLeft size={24} />
             </button>
-            <button 
-              onClick={() => scroll('right')} 
+            <button
+              onClick={() => scroll('right')}
               className="w-12 h-12 rounded-full border border-brand-navy/20 flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-white transition-colors focus:outline-none"
               aria-label="Next services"
             >
@@ -735,7 +736,7 @@ const Services = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={scrollRef}
           className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-4 px-[5px] sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -744,14 +745,14 @@ const Services = () => {
           <style dangerouslySetInnerHTML={{__html: `
             div::-webkit-scrollbar { display: none; }
           `}} />
-          
+
           {services.map((srv, i) => (
-            <Link 
-              key={i} 
+            <Link
+              key={i}
               to={srv.href}
               className={`shrink-0 w-[80vw] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] snap-start block p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
-                srv.highlight 
-                  ? 'bg-brand-navy text-white border-brand-navy shadow-lg' 
+                srv.highlight
+                  ? 'bg-brand-navy text-white border-brand-navy shadow-lg'
                   : 'bg-white text-gray-800 border-gray-100 shadow-sm hover:shadow-md'
               }`}
             >
@@ -903,8 +904,8 @@ const RequiredDocuments = () => {
         <div className="sticky top-[-16px] md:top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
           <div className="relative w-full max-w-lg mx-auto h-[460px] md:h-[420px]" style={{ perspective: 1500 }}>
             {docs.map((category, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 className="absolute inset-0 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 flex flex-col"
                 style={{ ...category.style, backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
               >
@@ -972,7 +973,7 @@ const Target = () => {
         <h2 className="text-3xl md:text-4xl font-serif text-brand-navy mb-12 max-w-3xl mx-auto">
           Lucrăm cel mai bine cu firme care au nevoie de claritate, conformitate și comunicare eficientă
         </h2>
-        
+
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white p-8 rounded-xl shadow-sm">
             <h4 className="font-medium text-lg text-brand-navy mb-3">Companii care depășesc pragurile legale</h4>
@@ -1049,11 +1050,11 @@ const FAQ = () => {
     <section id="faq" className="py-24 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-serif text-brand-navy mb-12 text-center">Întrebări frecvente despre auditul statutar</h2>
-        
+
         <div className="space-y-4">
           {faqs.map((faq, i) => (
             <div key={i} className="border border-gray-200 rounded-lg overflow-hidden">
-              <button 
+              <button
                 className="w-full px-6 py-4 text-left flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
@@ -1062,7 +1063,7 @@ const FAQ = () => {
               </button>
               <AnimatePresence>
                 {openIndex === i && (
-                  <motion.div 
+                  <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
@@ -1087,14 +1088,14 @@ const ContactForm = () => {
     <section id="contact" className="py-24 pt-32 lg:pt-40 bg-brand-beige min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
-          
+
           {/* CTA Text */}
           <div className="bg-brand-navy text-white p-10 md:p-12 rounded-2xl flex flex-col justify-center">
             <h2 className="text-3xl md:text-4xl font-serif mb-6">Hai să discutăm dacă firma ta are nevoie de audit statutar.</h2>
             <p className="text-lg text-white/80 mb-10">
               Într-o discuție scurtă putem clarifica obligațiile, etapele și pașii potriviți pentru compania ta. Fără obligații, doar claritate.
             </p>
-            
+
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0">
@@ -1131,7 +1132,7 @@ const ContactForm = () => {
                   <input type="text" className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold outline-none transition-all" required />
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
@@ -1184,18 +1185,14 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <BarChart3 className="text-brand-gold h-8 w-8" />
-              <div className="flex flex-col">
-                <span className="font-serif font-bold text-xl leading-none text-white tracking-wide">HELENICO</span>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-white/60 font-semibold">Advisory</span>
-              </div>
+            <div className="mb-6">
+              <img src="/logo-helenico-advisory.webp" alt="Helenico Advisory" className="h-16 w-auto brightness-0 invert" />
             </div>
             <p className="text-white/60 text-sm max-w-sm leading-relaxed">
               Servicii de audit statutar și consultanță financiară pentru companii care urmăresc performanță sustenabilă, conformitate și decizii sigure.
             </p>
           </div>
-          
+
           <div>
             <h4 className="font-medium mb-6 text-lg">Linkuri utile</h4>
             <ul className="space-y-3 text-sm text-white/60">
@@ -1216,7 +1213,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40">
           <p>&copy; {new Date().getFullYear()} Helenico Advisory. Toate drepturile rezervate.</p>
           <div className="flex gap-6">
@@ -1288,7 +1285,7 @@ export default function App() {
           <Route path="/servicii/risk-compliance" element={<ServicePage title="Risk & compliance" desc="Evaluarea riscurilor operaționale și financiare și asigurarea conformității. Protejăm valoarea companiei prin identificarea și atenuarea proactivă a riscurilor." icon={ShieldCheck} />} />
         </Routes>
         <Footer />
-        
+
         {/* Mobile Sticky CTA */}
         <div className="fixed bottom-0 left-0 right-0 p-3 bg-white border-t border-gray-200 md:hidden z-50 flex justify-center shadow-[0_-4px_10px_-1px_rgba(0,0,0,0.1)]">
           <a href="tel:0745300600" className="w-full bg-brand-navy hover:bg-brand-navy-light text-white py-3.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors">
