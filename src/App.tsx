@@ -49,12 +49,8 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <BarChart3 className="text-brand-navy h-8 w-8" />
-            <div className="flex flex-col">
-              <span className="font-serif font-bold text-xl leading-none text-brand-navy tracking-wide">HELENICO</span>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold">Advisory</span>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img src="/logo-helenico-advisory.webp" alt="Helenico Advisory" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -199,35 +195,41 @@ const Hero = () => {
 
   return (
     <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      {/* Hero background image */}
+      <div className="absolute inset-0">
+        <img src="/hero-audit-statutar.webp" alt="" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px]" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div 
+        <div
           className="max-w-3xl mx-auto text-center"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           style={{ perspective: 1000 }}
         >
-          
+
           {/* Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
           >
-            <h1 
+            <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-serif font-medium text-brand-navy leading-[1.1] mb-6"
               style={{ transform: "translateZ(40px)" }}
             >
               Audit statutar clar, riguros și adaptat companiei tale.
             </h1>
-            <p 
+            <p
               className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed"
               style={{ transform: "translateZ(30px)" }}
             >
               Sprijinim companiile să își îndeplinească obligațiile legale, să reducă riscurile și să obțină situații financiare auditate cu încredere.
             </p>
 
-            <div 
+            <div
               className="flex flex-col sm:flex-row gap-4 mb-12 justify-center"
               style={{ transform: "translateZ(50px)" }}
             >
@@ -236,7 +238,7 @@ const Hero = () => {
               </a>
             </div>
 
-            <div 
+            <div
               className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-medium text-gray-500"
               style={{ transform: "translateZ(20px)" }}
             >
